@@ -25,17 +25,15 @@ public final class RemoteFilmLoader {
         self.client = client
     }
     
-    public func load(completion: @escaping (Result) -> Void) {
+    public func load() async throws -> Result {
         print("Load film invoked: \(url.absoluteString)")
-        client.get(from: url) {[weak self] result in
-            guard self != nil else { return }
-            
-            switch result {
-            case let .success((data, response)):
-                completion(RemoteFilmLoader.map(data, from: response))
-            case .failure:
-                completion(.failure(Error.connectivity))
-            }
+        do {
+            let result = try await client.get(from: url).map({ data,response in
+                return RemoteFilmLoader.map(data, from: response)
+            })
+            return try result.get()
+        } catch {
+            return Result.failure(.connectivity)
         }
     }
     
@@ -51,7 +49,7 @@ public final class RemoteFilmLoader {
 
 private extension  RemoteFilmModel {
     func toModel() -> Film {
-        return Film(id: UUID(), name: self.title, openingCrawl: self.opening_crawl)
+        return Film(id: UUID(), name: self.title, openingCrawl: self.opening_crawl, url: URL(string: self.url)!)
     }
 }
 

@@ -13,14 +13,25 @@ public final class URLSessionHTTPClient: HTTPClient {
     public init(session: URLSession) {
         self.session = session
     }
-    
-    private struct UnexpectedValuesRepresentation: Error {}
-    
     private struct URLSessionTaskWrapper: HTTPClientTask {
         let wrapped: URLSessionTask
         
         func cancel() {
             wrapped.cancel()
+        }
+    }
+    private struct UnexpectedValuesRepresentation: Error {}
+    
+    public func get(from url: URL) async throws -> HTTPClient.Result {
+        do {
+            let (data, response) = try await session.data(from: url)
+            if let response = response as? HTTPURLResponse {
+                return HTTPClient.Result.success((data,response))
+            } else {
+                throw UnexpectedValuesRepresentation()
+            }
+        } catch {
+            throw error
         }
     }
     
@@ -37,8 +48,6 @@ public final class URLSessionHTTPClient: HTTPClient {
             })
         }
         task.resume()
-        return URLSessionTaskWrapper(wrapped: task)
+        return URLSessionTaskWrapper(wrapped: task)   
     }
-    
-    
 }

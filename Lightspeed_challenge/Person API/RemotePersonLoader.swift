@@ -50,7 +50,7 @@ private extension Array where Element == RemotePersonModel {
     func toModels() -> [Person] {
         return map {
             Person(id: UUID(), name: $0.name, dateOfBirth: $0.birth_year, films: $0.films.compactMap({ url in
-                return URL(string: url)
+                return Film(name: nil, openingCrawl: nil, url: URL(string: url)!)
             }))
         }
     }

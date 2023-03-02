@@ -10,32 +10,22 @@ import SwiftUI
 struct PeopleDetail: View {
     @State var person: Person
     @StateObject var viewModel: PeopleDetailViewModel
-    
+    var filmViewComposer: FilmViewComposer
     var body: some View {
-        VStack {
-            
-            Text("Name")
-                .font(.title)
-            Text(person.name)
-            Text(person.dateOfBirth)
-            Text("Films")
-                .font(.title)
-            
-            Text(viewModel.film?.name ?? "NO film")
-                .redacted(reason: .placeholder)
-                .shimmering()
-            Text(viewModel.film?.name ?? "NO film")
-                .shimmering()
-            Text(viewModel.film?.name ?? "NO film")
-                .shimmering()
-            Text(viewModel.film?.name ?? "NO film")
-                .shimmering()
-            
-            Spacer()
+        ScrollView {
+            VStack {
+                Text("Name")
+                    .font(.title)
+                Text(person.name)
+                Text(person.dateOfBirth)
+                
+                ForEach(person.films) { filmURL in
+                    filmViewComposer.viewComposedWith(url: filmURL.url)
+                        .padding(.bottom)
+                }
+            }
         }
-        .onAppear {
-            viewModel.loadDetails()
-        }
+        
         
     }
 }

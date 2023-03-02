@@ -11,5 +11,5 @@ public struct Person: Identifiable {
     public let id: UUID
     public let name: String
     public let dateOfBirth: String
-    public let films: [URL]
+    public let films: [Film]
 }

@@ -12,4 +12,5 @@ struct RemoteFilmModel: Decodable {
     let episode_id: Int
     let opening_crawl: String
     let director: String
+    let url: String
 }

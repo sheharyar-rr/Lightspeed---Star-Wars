@@ -11,10 +11,12 @@ public struct Film: Identifiable {
     public let id: UUID
     public let name: String
     public let openingCrawl: String
-//
-//    init(id: UUID, name: String, openingCrawl: String) {
-//        self.id = id
-//        self.name = name
-//        self.openingCrawl = openingCrawl
-//    }
+    public let url: URL
+
+    init(id: UUID = UUID(), name: String?, openingCrawl: String?, url: URL) {
+        self.id = id
+        self.name = name ?? ""
+        self.openingCrawl = openingCrawl ?? ""
+        self.url = url
+    }
 }

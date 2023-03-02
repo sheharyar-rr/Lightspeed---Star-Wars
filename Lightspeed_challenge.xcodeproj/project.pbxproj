@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5422A99729B082EB001A67D8 /* FilmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5422A99629B082EB001A67D8 /* FilmView.swift */; };
+		5422A99929B0830E001A67D8 /* FilmViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5422A99829B0830E001A67D8 /* FilmViewModel.swift */; };
 		54E3722D29AF2A4700A67B6F /* Lightspeed_challengeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54E3722C29AF2A4700A67B6F /* Lightspeed_challengeApp.swift */; };
 		54E3722F29AF2A4700A67B6F /* PeopleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54E3722E29AF2A4700A67B6F /* PeopleView.swift */; };
 		54E3723129AF2A4800A67B6F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 54E3723029AF2A4800A67B6F /* Assets.xcassets */; };
@@ -50,6 +52,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5422A99629B082EB001A67D8 /* FilmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmView.swift; sourceTree = "<group>"; };
+		5422A99829B0830E001A67D8 /* FilmViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmViewModel.swift; sourceTree = "<group>"; };
 		54E3722929AF2A4700A67B6F /* Lightspeed_challenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lightspeed_challenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		54E3722C29AF2A4700A67B6F /* Lightspeed_challengeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lightspeed_challengeApp.swift; sourceTree = "<group>"; };
 		54E3722E29AF2A4700A67B6F /* PeopleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleView.swift; sourceTree = "<group>"; };
@@ -221,6 +225,8 @@
 				54E3727329B02CC100A67B6F /* PeopleDetail.swift */,
 				54E3727529B034D200A67B6F /* PeopleDetailViewModel.swift */,
 				54E3727D29B0526D00A67B6F /* ShimmeringView.swift */,
+				5422A99629B082EB001A67D8 /* FilmView.swift */,
+				5422A99829B0830E001A67D8 /* FilmViewModel.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -357,6 +363,7 @@
 			files = (
 				54E3722F29AF2A4700A67B6F /* PeopleView.swift in Sources */,
 				54E3726129AFF66C00A67B6F /* PersonEndpoint.swift in Sources */,
+				5422A99929B0830E001A67D8 /* FilmViewModel.swift in Sources */,
 				54E3725E29AFF1E200A67B6F /* HTTPClient.swift in Sources */,
 				54E3727829B0361900A67B6F /* RemoteFilmLoader.swift in Sources */,
 				54E3725929AFECF700A67B6F /* Person.swift in Sources */,
@@ -367,6 +374,7 @@
 				54E3722D29AF2A4700A67B6F /* Lightspeed_challengeApp.swift in Sources */,
 				54E3727629B034D200A67B6F /* PeopleDetailViewModel.swift in Sources */,
 				54E3726829B005C500A67B6F /* RemotePersonModel.swift in Sources */,
+				5422A99729B082EB001A67D8 /* FilmView.swift in Sources */,
 				54E3726629B004C200A67B6F /* FeedLoader.swift in Sources */,
 				54E3725B29AFF1B600A67B6F /* URLSessionHTTPClient.swift in Sources */,
 				54E3727C29B0385900A67B6F /* RemoteFilmMapper.swift in Sources */,

@@ -36,8 +36,21 @@ class DetailViewComposer {
         self.client = client
     }
     public func viewComposedWith(person: Person) -> PeopleDetail {
-        let detailLoader = RemoteFilmLoader(url: person.films.first!, client: client)
-        let viewModel = PeopleDetailViewModel(detailLoader: detailLoader, person: person)
-        return PeopleDetail(person: person, viewModel: viewModel)
+        
+        let viewModel = PeopleDetailViewModel(person: person)
+        return PeopleDetail(person: person, viewModel: viewModel, filmViewComposer: FilmViewComposer(client: client))
+    }
+}
+
+class FilmViewComposer {
+    let client: HTTPClient
+    
+    init(client: HTTPClient) {
+        self.client = client
+    }
+    public func viewComposedWith(url: URL) -> FilmView {
+        
+        let viewModel = FilmViewModel(url: url, client: client)
+        return FilmView(viewModel: viewModel)
     }
 }
