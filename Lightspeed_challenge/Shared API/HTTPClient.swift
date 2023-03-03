@@ -9,6 +9,7 @@ import Foundation
 
 public protocol HTTPClientTask {
     func cancel()
+    func isCompleted() -> Bool
 }
 
 public protocol HTTPClient {

@@ -19,6 +19,10 @@ public final class URLSessionHTTPClient: HTTPClient {
         func cancel() {
             wrapped.cancel()
         }
+        
+        func isCompleted() -> Bool{
+            return wrapped.state == .completed
+        }
     }
     private struct UnexpectedValuesRepresentation: Error {}
     

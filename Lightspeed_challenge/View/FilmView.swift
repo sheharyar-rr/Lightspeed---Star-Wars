@@ -11,21 +11,31 @@ struct FilmView: View {
     @StateObject var viewModel: FilmViewModel
     
     var body: some View {
-        VStack {
-            Text("Film")
-                .font(.title)
-            Text(viewModel.name)
-            Text("Opening Crawl")
-                .font(.title)
-            Text(viewModel.openingCrawl)
-            
+        HStack {
+            VStack {
+                if viewModel.isLoading {
+                    Text("Film name redacted")
+                        .redacted(reason: .placeholder)
+                        .shimmering()
+                } else {
+                    Text(viewModel.name)
+                        .font(.title2)
+                }
+                if viewModel.isLoading {
+                    Text("Opening Crawl Word count: \(viewModel.words)")
+                        .font(.caption)
+                        .redacted(reason: .placeholder)
+                        .shimmering()
+                } else {
+                    Text("Opening Crawl word count: \(viewModel.words)")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                }
+                
+                
+            }
         }
+        
         
     }
 }
-//
-//struct FilmView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        FilmView()
-//    }
-//}

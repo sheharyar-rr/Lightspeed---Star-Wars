@@ -10,5 +10,6 @@ import Foundation
 public protocol FeedLoader {
     typealias Result = Swift.Result<[Person], Error>
     
-    func load(completion: @escaping (Result) -> Void)
+    @discardableResult
+    func load(completion: @escaping (Result) -> Void) -> HTTPClientTask
 }

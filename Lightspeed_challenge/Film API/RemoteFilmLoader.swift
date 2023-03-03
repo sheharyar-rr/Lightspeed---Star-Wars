@@ -25,15 +25,14 @@ public final class RemoteFilmLoader {
         self.client = client
     }
     
-    public func load() async throws -> Result {
-        print("Load film invoked: \(url.absoluteString)")
-        do {
-            let result = try await client.get(from: url).map({ data,response in
-                return RemoteFilmLoader.map(data, from: response)
-            })
-            return try result.get()
-        } catch {
-            return Result.failure(.connectivity)
+    public func load(completion: @escaping (Result) -> Void) -> HTTPClientTask {
+        return client.get(from: url) { result in
+            switch result {
+            case let .success((data, response)):
+                completion(RemoteFilmLoader.map(data, from: response))
+            case .failure:
+                completion(.failure(.connectivity))
+            }
         }
     }
     

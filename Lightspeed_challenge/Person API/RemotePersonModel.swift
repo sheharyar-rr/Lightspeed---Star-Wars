@@ -14,6 +14,7 @@ struct RemotePersonModel: Decodable {
     let hair_color: String
     let skin_color: String
     let eye_color: String
+    let gender: String
     let birth_year: String
     let films: [String]
     

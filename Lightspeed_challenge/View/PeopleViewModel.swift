@@ -9,6 +9,7 @@ import Foundation
 
 class PeopleViewModel: ObservableObject {
     @Published var PeopleList: [Person] = []
+    @Published var error: String?
     
     private let feedLoader: FeedLoader
     init(feedLoader: FeedLoader) {
@@ -18,12 +19,14 @@ class PeopleViewModel: ObservableObject {
     func loadPeople() {
         feedLoader.load {[weak self] result in
             DispatchQueue.main.async {
-                if let people = try? result.get() {
+                switch result {
+                case .failure(let error):
+                    print("Here 3",error.localizedDescription)
+                   // self?.error = error.localizedDescription
+                case .success(let people):
                     self?.PeopleList = people.sorted(by: {
                         $0.name < $1.name
                     })
-                } else {
-                    
                 }
             }
         }

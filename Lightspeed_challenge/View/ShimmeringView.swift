@@ -1,26 +1,15 @@
 import SwiftUI
 
-/// A view modifier that applies an animated "shimmer" to any view, typically to show that
-/// an operation is in progress.
 public struct Shimmer: ViewModifier {
+    
     let animation: Animation
     @State private var phase: CGFloat = 0
-    
-    /// Initializes his modifier with a custom animation,
-    /// - Parameter animation: A custom animation. The default animation is
-    ///   `.linear(duration: 1.5).repeatForever(autoreverses: false)`.
     public init(animation: Animation = Self.defaultAnimation) {
         self.animation = animation
     }
 
-    /// The default animation effect.
     public static let defaultAnimation = Animation.linear(duration: 1.5).repeatForever(autoreverses: false)
 
-    /// Convenience, backward-compatible initializer.
-    /// - Parameters:
-    ///   - duration: The duration of a shimmer cycle in seconds. Default: `1.5`.
-    ///   - bounce: Whether to bounce (reverse) the animation back and forth. Defaults to `false`.
-    ///   - delay:A delay in seconds. Defaults to `0`.
     public init(duration: Double = 1.5, bounce: Bool = false, delay: Double = 0) {
         self.animation = .linear(duration: duration)
             .repeatForever(autoreverses: bounce)
@@ -35,7 +24,6 @@ public struct Shimmer: ViewModifier {
             .onAppear { phase = 0.8 }
     }
 
-    /// An animatable modifier to interpolate between `phase` values.
     struct AnimatedMask: AnimatableModifier {
         var phase: CGFloat = 0
 
@@ -49,9 +37,7 @@ public struct Shimmer: ViewModifier {
                 .mask(GradientMask(phase: phase).scaleEffect(3))
         }
     }
-
-    /// A slanted, animatable gradient between transparent and opaque to use as mask.
-    /// The `phase` parameter shifts the gradient, moving the opaque band.
+    
     struct GradientMask: View {
         let phase: CGFloat
         let centerColor = Color.black
@@ -69,13 +55,6 @@ public struct Shimmer: ViewModifier {
 }
 
 public extension View {
-    /// Adds an animated shimmering effect to any view, typically to show that
-    /// an operation is in progress.
-    /// - Parameters:
-    ///   - active: Convenience parameter to conditionally enable the effect. Defaults to `true`.
-    ///   - duration: The duration of a shimmer cycle in seconds. Default: `1.5`.
-    ///   - bounce: Whether to bounce (reverse) the animation back and forth. Defaults to `false`.
-    ///   - delay:A delay in seconds. Defaults to `0`.
     @ViewBuilder func shimmering(
         active: Bool = true, duration: Double = 1.5, bounce: Bool = false, delay: Double = 0
     ) -> some View {
@@ -86,12 +65,6 @@ public extension View {
         }
     }
 
-    // Adds an animated shimmering effect to any view, typically to show that
-    /// an operation is in progress.
-    /// - Parameters:
-    ///   - active: Convenience parameter to conditionally enable the effect. Defaults to `true`.
-    ///   - animation: A custom animation. The default animation is
-    ///   `.linear(duration: 1.5).repeatForever(autoreverses: false)`.
     @ViewBuilder func shimmering(active: Bool = true, animation: Animation = Shimmer.defaultAnimation) -> some View {
         if active {
             modifier(Shimmer(animation: animation))

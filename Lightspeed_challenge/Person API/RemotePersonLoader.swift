@@ -23,8 +23,8 @@ public final class RemotePersonLoader: FeedLoader {
         self.client = client
     }
     
-    public func load(completion: @escaping (Result) -> Void) {
-        client.get(from: url) {[weak self] result in
+    public func load(completion: @escaping (Result) -> Void) -> HTTPClientTask {
+        return client.get(from: url) {[weak self] result in
             guard self != nil else { return }
             
             switch result {
@@ -49,7 +49,7 @@ public final class RemotePersonLoader: FeedLoader {
 private extension Array where Element == RemotePersonModel {
     func toModels() -> [Person] {
         return map {
-            Person(id: UUID(), name: $0.name, dateOfBirth: $0.birth_year, films: $0.films.compactMap({ url in
+            Person(id: UUID(), name: $0.name, dateOfBirth: $0.birth_year, physicalAttributes: [PhysicalAttribute(attribute: "Gender", value: $0.gender), PhysicalAttribute(attribute: "Eye color", value: $0.eye_color), PhysicalAttribute(attribute: "Hair Color", value: $0.hair_color), PhysicalAttribute(attribute: "Height", value: $0.height), PhysicalAttribute(attribute: "Mass", value: $0.mass), PhysicalAttribute(attribute: "Skin Color", value: $0.skin_color)], films: $0.films.compactMap({ url in
                 return Film(name: nil, openingCrawl: nil, url: URL(string: url)!)
             }))
         }

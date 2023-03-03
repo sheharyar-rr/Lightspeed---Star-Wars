@@ -8,29 +8,13 @@
 import Foundation
 
 class PeopleDetailViewModel: ObservableObject {
-    @Published var film: Film?
-    
-    private var detailLoader: RemoteFilmLoader
+    @Published var film: [Film] = []
     private var person: Person
     
-    init(detailLoader: RemoteFilmLoader, person: Person) {
-        self.detailLoader = detailLoader
+    init(person: Person) {
         self.person = person
     }
     
-    func loadDetails() {
-        print("ViewModel load details")
-        detailLoader.load { result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let film):
-                    self.film = film
-                case .failure(let error):
-                    print(error.localizedDescription)
-                }
-            }
-        }
-    }
     
     
     
