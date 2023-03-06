@@ -15,6 +15,7 @@ struct FilmView: View {
             VStack {
                 if viewModel.isLoading {
                     Text("Film name redacted")
+                        .font(.title2)
                         .redacted(reason: .placeholder)
                         .shimmering()
                 } else {

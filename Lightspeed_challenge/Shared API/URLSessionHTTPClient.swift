@@ -10,7 +10,7 @@ import Foundation
 public final class URLSessionHTTPClient: HTTPClient {
     private let session: URLSession
     
-    public init(session: URLSession) {
+    public init(session: URLSession = .shared) {
         self.session = session
     }
     private struct URLSessionTaskWrapper: HTTPClientTask {

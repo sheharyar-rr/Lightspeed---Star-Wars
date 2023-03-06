@@ -11,6 +11,11 @@
 		5422A99929B0830E001A67D8 /* FilmViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5422A99829B0830E001A67D8 /* FilmViewModel.swift */; };
 		5422A99C29B14DEE001A67D8 /* String+wordcount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5422A99B29B14DEE001A67D8 /* String+wordcount.swift */; };
 		5422A99F29B14E26001A67D8 /* ViewComposers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5422A99E29B14E26001A67D8 /* ViewComposers.swift */; };
+		5422A9A129B1A5A8001A67D8 /* Starjout.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5422A9A029B1A5A8001A67D8 /* Starjout.ttf */; };
+		5422A9A329B1A7EB001A67D8 /* Lightspeed-challenge-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5422A9A229B1A602001A67D8 /* Lightspeed-challenge-Info.plist */; };
+		5422A9A829B5C5FB001A67D8 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5422A9A729B5C5FB001A67D8 /* XCTestCase+MemoryLeakTracking.swift */; };
+		5422A9AB29B5C65A001A67D8 /* URLSessionHTTPClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5422A9AA29B5C65A001A67D8 /* URLSessionHTTPClientTests.swift */; };
+		5422A9AD29B5C6FD001A67D8 /* SharedTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5422A9AC29B5C6FD001A67D8 /* SharedTestHelpers.swift */; };
 		54E3722D29AF2A4700A67B6F /* Lightspeed_challengeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54E3722C29AF2A4700A67B6F /* Lightspeed_challengeApp.swift */; };
 		54E3722F29AF2A4700A67B6F /* PeopleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54E3722E29AF2A4700A67B6F /* PeopleView.swift */; };
 		54E3723129AF2A4800A67B6F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 54E3723029AF2A4800A67B6F /* Assets.xcassets */; };
@@ -58,6 +63,11 @@
 		5422A99829B0830E001A67D8 /* FilmViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmViewModel.swift; sourceTree = "<group>"; };
 		5422A99B29B14DEE001A67D8 /* String+wordcount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+wordcount.swift"; sourceTree = "<group>"; };
 		5422A99E29B14E26001A67D8 /* ViewComposers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewComposers.swift; sourceTree = "<group>"; };
+		5422A9A029B1A5A8001A67D8 /* Starjout.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Starjout.ttf; sourceTree = "<group>"; };
+		5422A9A229B1A602001A67D8 /* Lightspeed-challenge-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Lightspeed-challenge-Info.plist"; sourceTree = SOURCE_ROOT; };
+		5422A9A729B5C5FB001A67D8 /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
+		5422A9AA29B5C65A001A67D8 /* URLSessionHTTPClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClientTests.swift; sourceTree = "<group>"; };
+		5422A9AC29B5C6FD001A67D8 /* SharedTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTestHelpers.swift; sourceTree = "<group>"; };
 		54E3722929AF2A4700A67B6F /* Lightspeed_challenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lightspeed_challenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		54E3722C29AF2A4700A67B6F /* Lightspeed_challengeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lightspeed_challengeApp.swift; sourceTree = "<group>"; };
 		54E3722E29AF2A4700A67B6F /* PeopleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleView.swift; sourceTree = "<group>"; };
@@ -128,6 +138,23 @@
 			path = "UI Composers";
 			sourceTree = "<group>";
 		};
+		5422A9A629B5C5DE001A67D8 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				5422A9A729B5C5FB001A67D8 /* XCTestCase+MemoryLeakTracking.swift */,
+				5422A9AC29B5C6FD001A67D8 /* SharedTestHelpers.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		5422A9A929B5C630001A67D8 /* API Tests */ = {
+			isa = PBXGroup;
+			children = (
+				5422A9AA29B5C65A001A67D8 /* URLSessionHTTPClientTests.swift */,
+			);
+			path = "API Tests";
+			sourceTree = "<group>";
+		};
 		54E3722029AF2A4700A67B6F = {
 			isa = PBXGroup;
 			children = (
@@ -151,6 +178,7 @@
 		54E3722B29AF2A4700A67B6F /* Lightspeed_challenge */ = {
 			isa = PBXGroup;
 			children = (
+				5422A9A229B1A602001A67D8 /* Lightspeed-challenge-Info.plist */,
 				5422A99A29B14DCE001A67D8 /* Extensions */,
 				54E3726929B007C100A67B6F /* Film API */,
 				54E3726429B004A700A67B6F /* Person Feature */,
@@ -158,6 +186,7 @@
 				54E3725C29AFF1D200A67B6F /* Shared API */,
 				54E3725729AFECD800A67B6F /* Model */,
 				54E3722C29AF2A4700A67B6F /* Lightspeed_challengeApp.swift */,
+				5422A9A029B1A5A8001A67D8 /* Starjout.ttf */,
 				54E3727029B02C8800A67B6F /* View */,
 				54E3723029AF2A4800A67B6F /* Assets.xcassets */,
 				54E3723229AF2A4800A67B6F /* Lightspeed_challenge.entitlements */,
@@ -177,6 +206,8 @@
 		54E3723D29AF2A4900A67B6F /* Lightspeed_challengeTests */ = {
 			isa = PBXGroup;
 			children = (
+				5422A9A929B5C630001A67D8 /* API Tests */,
+				5422A9A629B5C5DE001A67D8 /* Helpers */,
 				54E3723E29AF2A4900A67B6F /* Lightspeed_challengeTests.swift */,
 			);
 			path = Lightspeed_challengeTests;
@@ -358,7 +389,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				54E3723529AF2A4800A67B6F /* Preview Assets.xcassets in Resources */,
+				5422A9A129B1A5A8001A67D8 /* Starjout.ttf in Resources */,
 				54E3723129AF2A4800A67B6F /* Assets.xcassets in Resources */,
+				5422A9A329B1A7EB001A67D8 /* Lightspeed-challenge-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -412,7 +445,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5422A9AD29B5C6FD001A67D8 /* SharedTestHelpers.swift in Sources */,
 				54E3723F29AF2A4900A67B6F /* Lightspeed_challengeTests.swift in Sources */,
+				5422A9AB29B5C65A001A67D8 /* URLSessionHTTPClientTests.swift in Sources */,
+				5422A9A829B5C5FB001A67D8 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -563,6 +599,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Lightspeed-challenge-Info.plist";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -603,6 +640,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Lightspeed-challenge-Info.plist";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;

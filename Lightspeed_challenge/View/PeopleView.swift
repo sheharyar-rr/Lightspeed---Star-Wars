@@ -17,8 +17,7 @@ struct PeopleView: View {
             VStack {
                 if let error = viewModel.error {
                     Image(systemName: "exclamationmark.triangle")
-                        .font(.title)
-                        .foregroundColor(.red)
+                        .font(Font.custom("Starjout", size: 18))                        .foregroundColor(.red)
                         .padding(5)
                     Text(error)
                         .multilineTextAlignment(.center)
@@ -35,7 +34,7 @@ struct PeopleView: View {
                             personDetailComposer.viewComposedWith(person: person)
                         } label: {
                             Text(person.name)
-                                .font(.headline)
+                                .font(Font.custom("Starjout", size: 18))
                         }
                     }
                 }
