@@ -6,13 +6,14 @@
 //
 
 import Foundation
+import Lightspeed
 
-class MainViewComposer {
-    public static func viewComposedWith(feedLoader: FeedLoader) -> PeopleView {
+public class MainViewComposer {
+    public static func viewComposedWith(feedLoader: PersonFeedLoader) -> (view: PeopleView, viewModel:PeopleViewModel) {
         let viewModel = PeopleViewModel(feedLoader: feedLoader)
         let detailComposer = DetailViewComposer(client: URLSessionHTTPClient(session: .shared))
         let peopleView = PeopleView(viewModel: viewModel, personDetailComposer: detailComposer)
-        return peopleView
+        return (peopleView, viewModel)
     }
 }
 

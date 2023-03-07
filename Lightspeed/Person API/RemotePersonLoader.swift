@@ -7,7 +7,7 @@
 
 import Foundation
 
-public final class RemotePersonLoader: FeedLoader {
+public final class RemotePersonLoader: PersonFeedLoader {
     private let url: URL
     private let client: HTTPClient
     
@@ -16,15 +16,15 @@ public final class RemotePersonLoader: FeedLoader {
         case invalidData
     }
     
-    public typealias Result = FeedLoader.Result
+    public typealias Result = PersonFeedLoader.Result
     
     public init(url: URL, client: HTTPClient) {
         self.url = url
         self.client = client
     }
     
-    public func load(completion: @escaping (Result) -> Void) -> HTTPClientTask {
-        return client.get(from: url) {[weak self] result in
+    public func load(completion: @escaping (Result) -> Void) {
+        client.get(from: url) {[weak self] result in
             guard self != nil else { return }
             
             switch result {

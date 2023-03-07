@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Lightspeed
 
 @main
 struct Lightspeed_challengeApp: App {
@@ -15,7 +16,7 @@ struct Lightspeed_challengeApp: App {
     var body: some Scene {
         WindowGroup {
             MainViewComposer.viewComposedWith(feedLoader: RemotePersonLoader(url: PersonEndPoint.get.url(baseURL: BaseURL),
-                                                                             client: URLSessionHTTPClient(session: .shared)))
+                                                                             client: URLSessionHTTPClient(session: .shared))).view
         }
     }
 }

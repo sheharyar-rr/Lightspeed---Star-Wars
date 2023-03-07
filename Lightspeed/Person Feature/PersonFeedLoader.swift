@@ -7,9 +7,8 @@
 
 import Foundation
 
-public protocol FeedLoader {
+public protocol PersonFeedLoader {
     typealias Result = Swift.Result<[Person], Error>
     
-    @discardableResult
-    func load(completion: @escaping (Result) -> Void) -> HTTPClientTask
+    func load(completion: @escaping (Result) -> Void)
 }

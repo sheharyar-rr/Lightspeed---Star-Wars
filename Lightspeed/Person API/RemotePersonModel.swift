@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct RemotePersonModel: Decodable {
+public struct RemotePersonModel: Decodable {
     let name: String
     let height: String
     let mass: String

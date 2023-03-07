@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Lightspeed
 
 class FilmViewModel: ObservableObject {
     @Published var name: String = ""

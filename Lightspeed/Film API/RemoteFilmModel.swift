@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct RemoteFilmModel: Decodable {
+public struct RemoteFilmModel: Decodable {
     let title: String
     let episode_id: Int
     let opening_crawl: String

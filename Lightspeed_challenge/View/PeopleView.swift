@@ -6,13 +6,14 @@
 //
 
 import SwiftUI
+import Lightspeed
 
-struct PeopleView: View {
+public struct PeopleView: View {
     
     @StateObject var viewModel: PeopleViewModel
     @State var personDetailComposer: DetailViewComposer
     @State var isShowingDetail = false
-    var body: some View {
+    public var body: some View {
         NavigationStack {
             VStack {
                 if let error = viewModel.error {
@@ -23,7 +24,7 @@ struct PeopleView: View {
                         .multilineTextAlignment(.center)
                         .font(.caption)
                         .foregroundColor(.secondary)
-                } else if viewModel.PeopleList.count == 0 {
+                } else if viewModel.isShowingLoading {
                     ProgressView()
                         .padding(5)
                     Text("Loading")

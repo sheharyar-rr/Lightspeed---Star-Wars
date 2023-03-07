@@ -7,8 +7,6 @@
 
 import Foundation
 
-import Foundation
-
 public final class RemoteFilmLoader {
     private let url: URL
     private let client: HTTPClient

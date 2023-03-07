@@ -13,7 +13,7 @@ public struct Film: Identifiable {
     public let openingCrawl: String
     public let url: URL
 
-    init(id: UUID = UUID(), name: String?, openingCrawl: String?, url: URL) {
+    public init(id: UUID = UUID(), name: String?, openingCrawl: String?, url: URL) {
         self.id = id
         self.name = name ?? ""
         self.openingCrawl = openingCrawl ?? ""

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Lightspeed
 
 class PeopleDetailViewModel: ObservableObject {
     @Published var film: [Film] = []

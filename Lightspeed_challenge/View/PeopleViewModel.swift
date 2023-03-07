@@ -6,23 +6,26 @@
 //
 
 import Foundation
+import Lightspeed
 
-class PeopleViewModel: ObservableObject {
+public class PeopleViewModel: ObservableObject {
     @Published var PeopleList: [Person] = []
     @Published var error: String?
+    @Published var isShowingLoading = false
     
-    private let feedLoader: FeedLoader
-    init(feedLoader: FeedLoader) {
+    private let feedLoader: PersonFeedLoader
+    init(feedLoader: PersonFeedLoader) {
         self.feedLoader = feedLoader
     }
     
-    func loadPeople() {
+    public func loadPeople() {
+        isShowingLoading = true
         feedLoader.load {[weak self] result in
+            self?.isShowingLoading = false
             DispatchQueue.main.async {
                 switch result {
                 case .failure(let error):
-                    print("Here 3",error.localizedDescription)
-                   // self?.error = error.localizedDescription
+                    print("Loading error",error.localizedDescription)
                 case .success(let people):
                     self?.PeopleList = people.sorted(by: {
                         $0.name < $1.name

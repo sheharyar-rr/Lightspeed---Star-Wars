@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Lightspeed
 
 struct PeopleDetail: View {
     @State var person: Person
