@@ -8,7 +8,7 @@
 import Foundation
 
 public protocol PersonFeedLoader {
-    typealias Result = Swift.Result<[Person], Error>
+    typealias Result = Swift.Result<([Person], HasNext:Bool), Error>
     
-    func load(completion: @escaping (Result) -> Void)
+    func load(next: Bool, completion: @escaping (Result) -> Void)
 }

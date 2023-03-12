@@ -16,9 +16,9 @@ public struct PeopleView: View {
     public var body: some View {
         NavigationStack {
             VStack {
-                if let error = viewModel.error {
+                if let error = viewModel.error, viewModel.PeopleList.count == 0 {
                     Image(systemName: "exclamationmark.triangle")
-                        .font(Font.custom("Starjout", size: 18))                        .foregroundColor(.red)
+                        .foregroundColor(.red)
                         .padding(5)
                     Text(error)
                         .multilineTextAlignment(.center)
@@ -30,18 +30,45 @@ public struct PeopleView: View {
                     Text("Loading")
                         .foregroundColor(.secondary)
                 } else {
-                    List(viewModel.PeopleList) { person in
-                        NavigationLink {
-                            personDetailComposer.viewComposedWith(person: person)
-                        } label: {
-                            Text(person.name)
-                                .font(Font.custom("Starjout", size: 18))
+                    List {
+                        ForEach(viewModel.PeopleList) { person in
+                            NavigationLink {
+                                personDetailComposer.viewComposedWith(person: person)
+                            } label: {
+                                Text(person.name)
+                                    .font(Font.custom("Starjout", size: 18))
+                            }
+                        }
+                        if let error = viewModel.error {
+                            HStack {
+                                Image(systemName: "exclamationmark.triangle")
+                                    .foregroundColor(.red)
+                                    .padding(5)
+                                Text(error)
+                                    .multilineTextAlignment(.center)
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
+                                    .onAppear {
+                                        viewModel.loadPeople(next: true)
+                                    }
+                            }
+                        } else if viewModel.hasNext {
+                            HStack {
+                                Spacer()
+                                ProgressView()
+                                    .onAppear {
+                                        viewModel.loadPeople(next: true)
+                                    }
+                                Spacer()
+                            }
                         }
                     }
                 }
             }
             .onAppear {
-                viewModel.loadPeople()
+                if viewModel.PeopleList.count == 0 {
+                    viewModel.loadPeople()
+                }
             }
             .navigationTitle("Star Wars Characters")
             .navigationViewStyle(.stack)

@@ -12,11 +12,10 @@ public final class RemoteFilmLoader {
     private let client: HTTPClient
     
     public enum Error: Swift.Error {
-        case connectivity
         case invalidData
     }
     
-    public typealias Result = Swift.Result<Film, Error>
+    public typealias Result = Swift.Result<Film, Swift.Error>
     
     public init(url: URL, client: HTTPClient) {
         self.url = url
@@ -28,8 +27,8 @@ public final class RemoteFilmLoader {
             switch result {
             case let .success((data, response)):
                 completion(RemoteFilmLoader.map(data, from: response))
-            case .failure:
-                completion(.failure(.connectivity))
+            case .failure(let error):
+                completion(.failure(error))
             }
         }
     }
@@ -39,7 +38,7 @@ public final class RemoteFilmLoader {
             let items = try RemoteFilmMapper.map(data, from: response)
             return .success(items.toModel())
         } catch {
-            return .failure(error as! RemoteFilmLoader.Error)
+            return .failure(error)
         }
     }
 }

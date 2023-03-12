@@ -11,8 +11,9 @@ public final class RemotePersonLoader: PersonFeedLoader {
     private let url: URL
     private let client: HTTPClient
     
+    private var nextURL: URL? = nil
+    
     public enum Error: Swift.Error {
-        case connectivity
         case invalidData
     }
     
@@ -23,25 +24,26 @@ public final class RemotePersonLoader: PersonFeedLoader {
         self.client = client
     }
     
-    public func load(completion: @escaping (Result) -> Void) {
-        client.get(from: url) {[weak self] result in
+    public func load(next: Bool, completion: @escaping (Result) -> Void) {
+        client.get(from: next ? nextURL ?? url : url) {[weak self] result in
             guard self != nil else { return }
-            
             switch result {
             case let .success((data, response)):
-                completion(RemotePersonLoader.map(data, from: response))
-            case .failure:
-                completion(.failure(Error.connectivity))
+                let (result, nextURL) = RemotePersonLoader.map(data, from: response)
+                self?.nextURL = nextURL
+                completion(result)
+            case .failure(let error):
+                completion(.failure(error))
             }
         }
     }
     
-    private static func map(_ data: Data, from response: HTTPURLResponse) -> Result {
+    private static func map(_ data: Data, from response: HTTPURLResponse) -> (Result, next: URL?) {
         do {
             let items = try RemotePersonMapper.map(data, from: response)
-            return .success(items.toModels())
+            return (.success((items.results.toModels(), items.next != nil)), items.next)
         } catch {
-            return .failure(error)
+            return (.failure(error), nil)
         }
     }
 }

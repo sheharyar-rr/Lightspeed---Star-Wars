@@ -12,24 +12,39 @@ public class PeopleViewModel: ObservableObject {
     @Published var PeopleList: [Person] = []
     @Published var error: String?
     @Published var isShowingLoading = false
+    @Published var hasNext = false
     
     private let feedLoader: PersonFeedLoader
     init(feedLoader: PersonFeedLoader) {
         self.feedLoader = feedLoader
     }
     
-    public func loadPeople() {
-        isShowingLoading = true
-        feedLoader.load {[weak self] result in
-            self?.isShowingLoading = false
+    public func loadPeople(next: Bool = false) {
+        print("Load people: \(next)")
+        isShowingLoading = (true && !next)
+        feedLoader.load(next: next) {[weak self] result in
             DispatchQueue.main.async {
+                self?.isShowingLoading = false
                 switch result {
                 case .failure(let error):
                     print("Loading error",error.localizedDescription)
-                case .success(let people):
-                    self?.PeopleList = people.sorted(by: {
-                        $0.name < $1.name
-                    })
+                    self?.error = error.localizedDescription
+                case .success((let people, let hasNext)):
+                    self?.hasNext = hasNext
+                    if next {
+                        if let currentPeopleList = self?.PeopleList {
+                            var newList:[Person] = []
+                            newList.append(contentsOf: currentPeopleList)
+                            newList.append(contentsOf: people)
+                            self?.PeopleList = newList.sorted(by: { $0.name < $1.name })
+                            self?.error = nil
+                        }
+                    } else {
+                        self?.PeopleList = people.sorted(by: {
+                            $0.name < $1.name
+                        })
+                    }
+                    
                 }
             }
         }

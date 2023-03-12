@@ -18,25 +18,28 @@ struct FilmView: View {
                         .font(.title2)
                         .redacted(reason: .placeholder)
                         .shimmering()
-                } else {
-                    Text(viewModel.name)
-                        .font(.title2)
-                }
-                if viewModel.isLoading {
                     Text("Opening Crawl Word count: \(viewModel.words)")
                         .font(.caption)
                         .redacted(reason: .placeholder)
                         .shimmering()
-                } else {
+                } else if !viewModel.isLoading && viewModel.error == nil {
+                    Text(viewModel.name)
+                        .font(.title2)
                     Text("Opening Crawl word count: \(viewModel.words)")
                         .font(.caption)
                         .foregroundColor(.secondary)
+                } else if let error = viewModel.error {
+                    HStack {
+                        Image(systemName: "exclamationmark.triangle")
+                            .foregroundColor(.red)
+                            .padding(5)
+                        Text(error)
+                            .multilineTextAlignment(.center)
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                    }
                 }
-                
-                
             }
         }
-        
-        
     }
 }

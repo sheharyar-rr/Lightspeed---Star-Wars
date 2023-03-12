@@ -41,18 +41,22 @@ class FilmViewComposer {
         let viewModel = FilmViewModel()
         if !isLoading(url: url) {
             viewModel.isLoading = true
-            let taskx = load(url: url) { film in
+            let taskx = load(url: url) { film, error in
                 if let film = film {
                     viewModel.set(film: film)
+                } else if let error {
+                    viewModel.set(error: error.localizedDescription)
                 }
             }
             tasks.updateValue(taskx, forKey: url)
         } else {
             cancelTask(for: url)
             viewModel.isLoading = true
-            let taskx = load(url: url) { film in
+            let taskx = load(url: url) { film, error in
                 if let film = film {
                     viewModel.set(film: film)
+                } else if let error = error {
+                    viewModel.set(error: error.localizedDescription)
                 }
             }
             tasks.updateValue(taskx, forKey: url)
@@ -62,16 +66,16 @@ class FilmViewComposer {
     }
     
     
-    func load(url: URL, completion: @escaping ((Film?) -> Void)) -> (HTTPClientTask, RemoteFilmLoader) {
+    func load(url: URL, completion: @escaping ((Film?, Error?) -> Void)) -> (HTTPClientTask, RemoteFilmLoader) {
         let filmLoader = RemoteFilmLoader(url: url, client: client)
         return (filmLoader.load { result in
             switch result {
             case .success(let film):
                 DispatchQueue.main.async {
-                    completion(film)
+                    completion(film, nil)
                 }
             case .failure(let error):
-                completion(nil)
+                completion(nil, error)
                 print(error)
             }
         },filmLoader)

@@ -12,6 +12,7 @@ class FilmViewModel: ObservableObject {
     @Published var name: String = ""
     @Published var words: Int = 0
     @Published var isLoading = false
+    @Published var error: String?
     
     init()  {
     }
@@ -22,6 +23,13 @@ class FilmViewModel: ObservableObject {
             self.name = film.name
             self.isLoading = false
             self.words = film.openingCrawl.wordCount()
+        }
+    }
+    
+    func set(error: String) {
+        DispatchQueue.main.async {
+            self.error = error
+            self.isLoading = false
         }
     }
 }
