@@ -22,15 +22,24 @@ final class PeopleViewTests: XCTestCase {
         XCTAssertEqual(loader.loadFeedCallCount, 1, "Expected a loading request once view is loaded")
     }
     
-    func test_loadingFeedIndicator_isVisibleWhenLoading() {
+    func test_loadPeopleAction_errorFromLoader() {
         let (sut, loader) = makeSUT()
         
         sut.viewModel.loadPeople()
-        XCTAssertTrue(sut.viewModel.isShowingLoading, "Expected loading indicator once view is loaded")
+        loader.completeFeedLoadingWithError()
+        print("Load feed count \(loader.loadFeedCallCount)")
         
-        loader.completeFeedLoading(at: 0)
-        XCTAssertFalse(sut.viewModel.isShowingLoading, "Expected no loading indicator once loading completes successfully")
+        let expectation = expectation(description: "Error when loading")
         
+        sut.viewModel.$error
+            .receive(on: RunLoop.main)
+            .sink { error in
+                if error == anyNSError().localizedDescription {
+                    expectation.fulfill()
+                }
+            }
+            .store(in: &cancellables)
+        wait(for: [expectation], timeout: 1)
     }
     
     func test_loadPeopleCompletion_loadedAlphabetically() {

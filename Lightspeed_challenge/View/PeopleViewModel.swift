@@ -44,7 +44,6 @@ public class PeopleViewModel: ObservableObject {
                             $0.name < $1.name
                         })
                     }
-                    
                 }
             }
         }

@@ -18,16 +18,16 @@ extension PeopleViewTests {
             return feedRequests.count
         }
         
-        func load(completion: @escaping (PersonFeedLoader.Result) -> Void) {
+        func load(next: Bool, completion: @escaping (PersonFeedLoader.Result) -> Void) {
             feedRequests.append(completion)
         }
         
-        func completeFeedLoading(with feed: [Person] = [], at index: Int = 0) {
-            feedRequests[index](.success(feed))
+        func completeFeedLoading(with feed: [Person] = [], hasNext: Bool = false, at index: Int = 0) {
+            feedRequests[index](.success((feed, hasNext)))
         }
         
         func completeFeedLoadingWithError(at index: Int = 0) {
-            let error = NSError(domain: "an error", code: 0)
+            let error = anyNSError()
             feedRequests[index](.failure(error))
         }
         

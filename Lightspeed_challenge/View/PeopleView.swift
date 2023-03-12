@@ -67,7 +67,7 @@ public struct PeopleView: View {
             }
             .onAppear {
                 if viewModel.PeopleList.count == 0 {
-                    viewModel.loadPeople()
+                   viewModel.loadPeople()
                 }
             }
             .navigationTitle("Star Wars Characters")
