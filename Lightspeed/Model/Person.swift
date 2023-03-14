@@ -7,9 +7,12 @@
 
 import Foundation
 
-public struct Person: Identifiable, Equatable {
+public struct Person: Identifiable, Equatable, Hashable {
     public static func == (lhs: Person, rhs: Person) -> Bool {
-        return lhs.id == rhs.id
+        return lhs.name == rhs.name
+    }
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(name)
     }
     
     public let id: UUID

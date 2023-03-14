@@ -36,7 +36,8 @@ public class PeopleViewModel: ObservableObject {
                             var newList:[Person] = []
                             newList.append(contentsOf: currentPeopleList)
                             newList.append(contentsOf: people)
-                            self?.PeopleList = newList.sorted(by: { $0.name < $1.name })
+                            let uniqueList = Array(Set(newList))
+                            self?.PeopleList = uniqueList.sorted(by: { $0.name < $1.name })
                             self?.error = nil
                         }
                     } else {
